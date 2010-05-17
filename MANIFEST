@@ -1,0 +1,9 @@
+CHANGES
+Dancer-Plugin-Email.kpf
+LICENSE
+MANIFEST
+META.yml
+Makefile.PL
+README
+dist.ini
+lib/Dancer/Plugin/Email.pm
