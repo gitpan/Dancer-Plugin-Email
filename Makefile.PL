@@ -20,10 +20,15 @@ my %WriteMakefileArgs = (
   'LICENSE' => 'perl',
   'NAME' => 'Dancer::Plugin::Email',
   'PREREQ_PM' => {
+    'Authen::SASL' => '0',
     'Email::Stuff' => '2.102',
-    'Hash::Merge' => '0.12'
+    'Hash::Merge' => '0.12',
+    'IO::Socket::SSL' => '0',
+    'Net::SMTP::SSL' => '0',
+    'Net::SMTP::TLS' => '0',
+    'Net::SSLeay' => '0'
   },
-  'VERSION' => '0.01',
+  'VERSION' => '0.10',
   'test' => {
     'TESTS' => ''
   }
@@ -32,10 +37,10 @@ my %WriteMakefileArgs = (
 
 unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
   my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
-  my $pp = $WriteMakefileArgs{PREREQ_PM}; 
+  my $pp = $WriteMakefileArgs{PREREQ_PM};
   for my $mod ( keys %$br ) {
     if ( exists $pp->{$mod} ) {
-      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod}; 
+      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
     }
     else {
       $pp->{$mod} = $br->{$mod};
