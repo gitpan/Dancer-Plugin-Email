@@ -1,6 +1,6 @@
 package Dancer::Plugin::Email;
 BEGIN {
-  $Dancer::Plugin::Email::VERSION = '0.10';
+  $Dancer::Plugin::Email::VERSION = '0.11';
 }
 # ABSTRACT: Simple email handling for Dancer applications using Email::Stuff!
 
@@ -141,7 +141,7 @@ Dancer::Plugin::Email - Simple email handling for Dancer applications using Emai
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 SYNOPSIS
 
@@ -160,7 +160,7 @@ version 0.10
     };
 
 Important Note! The default email format is plain-text, this can be changed to
-html by seeting the option 'type' to 'heml' in the config file or as an argument
+html by seeting the option 'type' to 'html' in the config file or as an argument
 in the hashref passed to the email keyword. The following are options that can
 be passed to the email function:
 
