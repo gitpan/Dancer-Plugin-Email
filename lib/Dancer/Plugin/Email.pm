@@ -1,6 +1,6 @@
 package Dancer::Plugin::Email;
 BEGIN {
-  $Dancer::Plugin::Email::VERSION = '0.11';
+  $Dancer::Plugin::Email::VERSION = '0.12';
 }
 # ABSTRACT: Simple email handling for Dancer applications using Email::Stuff!
 
@@ -53,11 +53,23 @@ register email => sub {
     
     # process message
     if ($options->{message}) {
-        if (lc($options->{type}) eq 'html') {
-            $self->html_body($options->{message});
+        # multipart send using plain text and html
+        if (lc($options->{type}) eq 'multi') {
+            if (ref($options->{message}) eq "HASH") {
+                $self->html_body($options->{message}->{html})
+                    if defined $options->{message}->{html};
+                $self->text_body($options->{message}->{text})
+                    if defined $options->{message}->{text};
+            }
         }
         else {
-            $self->text_body($options->{message});
+            # standard send using html or plain text
+            if (lc($options->{type}) eq 'html') {
+                $self->html_body($options->{message});
+            }
+            else {
+                $self->text_body($options->{message});
+            }
         }
     }
     
@@ -78,6 +90,11 @@ register email => sub {
         }
     }
 
+    # some light error handling
+    die 'specify type multi if sending text and html'
+        if lc($options->{type}) eq 'multi' && "HASH" eq ref $options->{type};
+        
+    # okay, go team, go
     if (defined $settings->{driver}) {
         if (lc($settings->{driver}) eq lc("sendmail")) {
             $self->{send_using} = ['Sendmail', $settings->{path}];
@@ -141,7 +158,7 @@ Dancer::Plugin::Email - Simple email handling for Dancer applications using Emai
 
 =head1 VERSION
 
-version 0.11
+version 0.12
 
 =head1 SYNOPSIS
 
@@ -175,10 +192,16 @@ be passed to the email function:
     
     # message body
     message => 'html or plain-text data'
+    message => {
+        text => $text_message,
+        html => $html_messase,
+        # type must be 'multi'
+    }
     
     # email message content type
     type => 'text'
     type => 'html'
+    type => 'multi'
     
     # carbon-copy other email addresses
     cc => 'user@site.com'
@@ -210,7 +233,7 @@ attachments. Simply define how you wish to send the email in your application's
 YAML configuration file, then call the email keyword passing the neccessary
 parameters as outlined above.
 
-=head1 CODE COOKBOOK
+=head1 CODE RECIPES
 
     # Handle Email Failures
     
@@ -238,6 +261,18 @@ parameters as outlined above.
         headers => {
             "X-Mailer" => 'This fine Dancer application',
             "X-Accept-Language" => 'en'
+        }
+    };
+    
+    # Send Text and HTML Email together
+    
+    email {
+        to => '...',
+        subject => '...',
+        type => 'multi',
+        message => {
+            text => $txt,
+            html => $html,
         }
     };
 
