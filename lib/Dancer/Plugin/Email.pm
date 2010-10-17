@@ -1,6 +1,6 @@
 package Dancer::Plugin::Email;
 BEGIN {
-  $Dancer::Plugin::Email::VERSION = '0.12';
+  $Dancer::Plugin::Email::VERSION = '0.1201';
 }
 # ABSTRACT: Simple email handling for Dancer applications using Email::Stuff!
 
@@ -17,7 +17,8 @@ register email => sub {
     my ($options, @arguments)  = @_;
     my $self = Email::Stuff->new;
     
-    $options = Hash::Merge->new( 'LEFT_PRECEDENT' )->merge($settings, $options);
+    #$options = Hash::Merge->new( 'LEFT_PRECEDENT' )->merge($settings, $options);
+    $options = Hash::Merge->new( 'LEFT_PRECEDENT' )->merge($options, $settings); # requested by igor.bujna@post.cz
     
     # process to
     if ($options->{to}) {
@@ -126,7 +127,7 @@ register email => sub {
         }
         if (lc($settings->{driver}) eq lc("qmail")) {
             $self->{send_using} = ['Qmail', $settings->{path}];
-            # failsafe
+            # fail safe
             $Email::Send::Qmail::QMAIL = $settings->{path} unless
                 $Email::Send::Qmail::QMAIL;
         }
@@ -158,7 +159,7 @@ Dancer::Plugin::Email - Simple email handling for Dancer applications using Emai
 
 =head1 VERSION
 
-version 0.12
+version 0.1201
 
 =head1 SYNOPSIS
 
@@ -177,7 +178,7 @@ version 0.12
     };
 
 Important Note! The default email format is plain-text, this can be changed to
-html by seeting the option 'type' to 'html' in the config file or as an argument
+html by setting the option 'type' to 'html' in the config file or as an argument
 in the hashref passed to the email keyword. The following are options that can
 be passed to the email function:
 
@@ -230,7 +231,7 @@ be passed to the email function:
 
 Provides an easy way of handling text or html email messages with or without
 attachments. Simply define how you wish to send the email in your application's
-YAML configuration file, then call the email keyword passing the neccessary
+YAML configuration file, then call the email keyword passing the necessary
 parameters as outlined above.
 
 =head1 CODE RECIPES
@@ -287,7 +288,7 @@ parameters as outlined above.
         user: account@gmail.com
         pass: ****
     
-    # Send mail to/from google (gmail)
+    # Send mail to/from Google (gmail)
     
     plugins:
       Email:
@@ -298,7 +299,7 @@ parameters as outlined above.
         user: account@gmail.com
         pass: ****
         
-    # Send mail to/from google (gmail) using TLS
+    # Send mail to/from Google (gmail) using TLS
     
     plugins:
       Email:

@@ -21,6 +21,7 @@ my %WriteMakefileArgs = (
   'NAME' => 'Dancer::Plugin::Email',
   'PREREQ_PM' => {
     'Authen::SASL' => '0',
+    'Dancer' => '0',
     'Email::Stuff' => '2.102',
     'Hash::Merge' => '0.12',
     'IO::Socket::SSL' => '0',
@@ -28,7 +29,7 @@ my %WriteMakefileArgs = (
     'Net::SMTP::TLS' => '0',
     'Net::SSLeay' => '0'
   },
-  'VERSION' => '0.12',
+  'VERSION' => '0.1201',
   'test' => {
     'TESTS' => ''
   }

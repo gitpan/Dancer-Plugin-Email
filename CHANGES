@@ -1,3 +1,78 @@
+==============================
+9999-99-99 99:99:99 +0000 HEAD
+==============================
+
+  commit 34c461337cad2ed805f522d1c60c812cbb1fcb38
+  Merge: 6bba359... 0fc0d67...
+  Author: unknown <Administrator@.(none)>
+  Date:   Sun Oct 17 15:01:53 2010 -0400
+  
+    Merge branch 'master' of
+    git://github.com/alnewkirk/Dancer-Plugin-Email
+
+  commit 6bba359a3133f4f695e5f9a73b29878b2e66415f
+  Author: unknown <Administrator@.(none)>
+  Date:   Sun Oct 17 14:52:49 2010 -0400
+  
+    fixed dist.ini and pod, new version
+
+  commit 0fc0d67b9d627db3dc2e3a73f3886d799df629cd
+  Author: Al Newkirk <root@alnewkirk.com>
+  Date:   Sun Oct 3 19:32:09 2010 -0400
+  
+    fixed settings precedence
+
+  commit 6e79bd0445e1941a5b67f603bf5bd4f530646f8d
+  Merge: 938192e... 6e665b8...
+  Author: unknown <Administrator@.(none)>
+  Date:   Sat Oct 2 15:01:48 2010 -0400
+  
+    Merge branch 'master' of
+    git://github.com/alnewkirk/Dancer-Plugin-Email
+
+  commit 938192e9250af6a189259605da08b731aed7348d
+  Author: unknown <Administrator@.(none)>
+  Date:   Sat Oct 2 14:58:05 2010 -0400
+  
+    added multi-type email sending support, thanks Igor Bujna
+
+  commit 6e665b8aedcd4bfaa91b65e4196d1975033deff0
+  Author: Al Newkirk & Associates <github@alnewkirk.com>
+  Date:   Mon Sep 13 11:03:41 2010 -0400
+  
+    ran spellcheck
+
+  commit 3f45f0cb7c032b87856cad8a2d86753b084e91b0
+  Author: unknown <Administrator@.(none)>
+  Date:   Sat Sep 11 19:50:17 2010 -0400
+  
+    fixed typo
+
+  commit 7fa0b840d229733346251ce622925e62edda898c
+  Author: unknown <Administrator@.(none)>
+  Date:   Fri Sep 10 20:22:09 2010 -0400
+  
+    fixed ignore
+
+  commit c0332a9cc1945c41f12e999c734558f4fe94f58d
+  Author: unknown <Administrator@.(none)>
+  Date:   Fri Sep 10 20:20:33 2010 -0400
+  
+    fixed smtp authentication support, added reply_to, default
+    content-type is text
+
+  commit d135fa031b9010e21bf568d58a5c1ef8e3893361
+  Author: Al Newkirk & Associates <github@alnewkirk.com>
+  Date:   Fri Sep 10 15:43:26 2010 -0400
+  
+    working on SMTP authentication problem
+
+  commit bade4a71a267c1739360ac2c39465361b3cd0f4f
+  Author: Al Newkirk <root@alnewkirk.com>
+  Date:   Sun May 16 22:01:35 2010 -0400
+  
+    fixed dist.ini 
+
 ===================================
 End of changes in the last 365 days
 ===================================
