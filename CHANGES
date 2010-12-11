@@ -2,8 +2,17 @@
 9999-99-99 99:99:99 +0000 HEAD
 ==============================
 
+  commit 7894a4372ebd56577e19567a9b4702958c4bea5b
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date:   Sat Dec 11 06:13:32 2010 -0500
+  
+    Fix for RT ticket #63706: reply_to not working.
+
+    Thanks to jda@tapodi.net. Fixed warnings about uninitialized value in
+    comparison. Updating version for a new release.
+
   commit 34c461337cad2ed805f522d1c60c812cbb1fcb38
-  Merge: 6bba359... 0fc0d67...
+  Merge: 6bba359 0fc0d67
   Author: unknown <Administrator@.(none)>
   Date:   Sun Oct 17 15:01:53 2010 -0400
   
@@ -23,7 +32,7 @@
     fixed settings precedence
 
   commit 6e79bd0445e1941a5b67f603bf5bd4f530646f8d
-  Merge: 938192e... 6e665b8...
+  Merge: 938192e 6e665b8
   Author: unknown <Administrator@.(none)>
   Date:   Sat Oct 2 15:01:48 2010 -0400
   

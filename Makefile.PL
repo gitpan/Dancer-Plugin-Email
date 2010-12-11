@@ -10,7 +10,7 @@ use ExtUtils::MakeMaker 6.31;
 
 my %WriteMakefileArgs = (
   'ABSTRACT' => 'Simple email handling for Dancer applications using Email::Stuff!',
-  'AUTHOR' => 'Al Newkirk <awncorp@cpan.org>',
+  'AUTHOR' => 'Al Newkirk <awncorp@cpan.org>, Naveed Massjouni <ironcamel@cpan.org>',
   'BUILD_REQUIRES' => {},
   'CONFIGURE_REQUIRES' => {
     'ExtUtils::MakeMaker' => '6.31'
@@ -29,7 +29,7 @@ my %WriteMakefileArgs = (
     'Net::SMTP::TLS' => '0',
     'Net::SSLeay' => '0'
   },
-  'VERSION' => '0.1201',
+  'VERSION' => '0.1202',
   'test' => {
     'TESTS' => ''
   }
