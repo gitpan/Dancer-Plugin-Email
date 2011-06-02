@@ -1,6 +1,22 @@
-==============================
-9999-99-99 99:99:99 +0000 HEAD
-==============================
+=================================
+2011-06-02 02:13:55 -0400 v0.1203
+=================================
+
+  commit 9dd73e91b50586a9c3aedc981ea21cda01e5457a
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date:   Thu Jun 2 02:13:55 2011 -0400
+  
+    Updating version to 0.1203
+
+  commit 201376336d18aa55151ea015fbcf0e0f606228d0
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date:   Thu Jun 2 01:56:18 2011 -0400
+  
+    Fixing attachments. Thanks rrb3942. Closes #2. 
+
+=================================
+2010-12-11 06:13:32 -0500 v0.1202
+=================================
 
   commit 7894a4372ebd56577e19567a9b4702958c4bea5b
   Author: Naveed Massjouni <naveedm9@gmail.com>
