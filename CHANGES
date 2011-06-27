@@ -1,4 +1,40 @@
 =================================
+2011-06-27 02:00:04 -0400 v0.1300
+=================================
+
+  commit 9bf17cab2647c9247a9c0619e045469831f0a394
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date:   Mon Jun 27 02:00:04 2011 -0400
+  
+    Changing Prereq -> Prereqs in dist.ini.
+
+  commit b6b2157bf88e0da5895253734b5d9bb323b9f493
+  Merge: 69b47cb 0957bb4
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date:   Mon Jun 27 01:34:15 2011 -0400
+  
+    Merge branch 'master' of github.com:ironcamel/Dancer-Plugin-Email
+
+  commit 69b47cb8f9734764b2f71190fc47507d9ad005e3
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date:   Mon Jun 27 01:33:37 2011 -0400
+  
+    Updating version to 0.1300 for a new CPAN release.
+
+  commit 3484301d65a4111e679d1e94d785365aec4631d1
+  Author: Oleg A. Mamontov <oleg@mamontov.net>
+  Date:   Mon Jun 20 12:56:43 2011 +0400
+  
+    Some examples added to pod.
+
+  commit 4d46aceb30468840949303f7ceb9f572625eb702
+  Author: Oleg A. Mamontov <oleg@mamontov.net>
+  Date:   Mon Jun 20 12:55:07 2011 +0400
+  
+    Accepts 'encoding' parameter to set appropriate
+    Content-Transfer-Encoding header. 
+
+=================================
 2011-06-02 02:13:55 -0400 v0.1203
 =================================
 

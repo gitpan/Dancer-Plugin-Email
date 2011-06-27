@@ -1,6 +1,6 @@
 package Dancer::Plugin::Email;
 BEGIN {
-  $Dancer::Plugin::Email::VERSION = '0.1203';
+  $Dancer::Plugin::Email::VERSION = '0.1300';
 }
 # ABSTRACT: Simple email handling for Dancer applications using Email::Stuff!
 
@@ -47,6 +47,9 @@ register email => sub {
         $self->subject($options->{subject});
     }
     
+    # process encoding
+    $options->{encoding} ||= 'quoted-printable';
+     
     # process message
     my $message = $options->{message};
     my $type = $options->{type} || '';
@@ -55,15 +58,17 @@ register email => sub {
         if ($type eq 'multi') {
             die 'message param must be a hashref if type is multi'
                 unless ref $message eq 'HASH';
-            $self->html_body($message->{html}) if defined $message->{html};
-            $self->text_body($message->{text}) if defined $message->{text};
+            $self->html_body($message->{html}, encoding => $options->{encoding})
+                if defined $message->{html};
+            $self->text_body($message->{text}, encoding => $options->{encoding})
+                if defined $message->{text};
         }
         else {
             # standard send using html or plain text
             if ($type eq 'html') {
-                $self->html_body($options->{message});
+                $self->html_body($options->{message}, encoding => $options->{encoding});
             } else {
-                $self->text_body($options->{message});
+                $self->text_body($options->{message}, encoding => $options->{encoding});
             }
         }
     }
@@ -144,7 +149,7 @@ Dancer::Plugin::Email - Simple email handling for Dancer applications using Emai
 
 =head1 VERSION
 
-version 0.1203
+version 0.1300
 
 =head1 SYNOPSIS
 
@@ -225,6 +230,7 @@ parameters as outlined above.
             to => '...',
             subject => '...',
             message => $msg,
+            encoding => 'base64',
             attach => [ '/path/to/file' ]
         };
         
@@ -301,6 +307,7 @@ parameters as outlined above.
       Email:
         from: ...
         subject: ...
+        encoding: base64
         headers:
           X-Mailer: MyDancer 1.0
           X-Accept-Language: en

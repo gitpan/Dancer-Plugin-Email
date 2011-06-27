@@ -1,46 +1,186 @@
+NAME
+    Dancer::Plugin::Email - Simple email handling for Dancer applications
+    using Email::Stuff!
 
-Dancer-Plugin-Email - Simple email handling for Dancer applications using Email::Stuff!
+VERSION
+    version 0.1300
 
-BASIC USAGES
+SYNOPSIS
+        use Dancer;
+        use Dancer::Plugin::Email;
+    
+        post '/contact' => sub {
+            email {
+                to => '...',
+                subject => '...',
+                message => $msg,
+                attach => [ '/path/to/file' ]
+            };
+        };
 
-  use Dancer;
-  use Dancer::Plugin::Email;
-  
-  post '/contact' => sub {
-  
-      email {
-          to => '...',
-          subject => '...',
-          message => $msg,
-          attach => [
-              '/path/to/file' => 'filename'
-          ]
-      };
+    Important Note! The default email format is plain-text, this can be
+    changed to html by setting the option 'type' to 'html' in the config
+    file or as an argument in the hashref passed to the email keyword. The
+    following are options that can be passed to the email function:
 
-  };
+        # send message to
+        to => $email_recipient
+    
+        # send messages from
+        from => $mail_sender
+    
+        # email subject
+        subject => 'email subject line'
+    
+        # message body
+        message => 'html or plain-text data'
+        message => {
+            text => $text_message,
+            html => $html_messase,
+            # type must be 'multi'
+        }
+    
+        # email message content type
+        type => 'text'
+        type => 'html'
+        type => 'multi'
+    
+        # carbon-copy other email addresses
+        cc => 'user@site.com'
+        cc => 'user_a@site.com, user_b@site.com, user_c@site.com'
+        cc => join ', ', @email_addresses
+    
+        # blind carbon-copy other email addresses
+        bcc => 'user@site.com'
+        bcc => 'user_a@site.com, user_b@site.com, user_c@site.com'
+        bcc => join ', ', @email_addresses
+    
+        # specify where email responses should be directed
+        reply_to => 'other_email@website.com'
+    
+        # attach files to the email
+        attach => [ '/path/to/file1', '/path/to/file2' ]
+    
+        # send additional (specialized) headers
+        headers => {
+            "X-Mailer" => "Dancer::Plugin::Email 1.23456789"
+        }
 
-To install this module using code from CPAN,
-run the following commands
+DESCRIPTION
+    Provides an easy way of handling text or html email messages with or
+    without attachments. Simply define how you wish to send the email in
+    your application's YAML configuration file, then call the email keyword
+    passing the necessary parameters as outlined above.
 
-  perl Makefile.PL
-  make
-  make test
-  make install
+CODE RECIPES
+        # Handle Email Failures
+    
+        post '/contact' => sub {
+    
+            my $msg = email {
+                to => '...',
+                subject => '...',
+                message => $msg,
+                encoding => 'base64',
+                attach => [ '/path/to/file' ]
+            };
+        
+            warn $msg->{string} if $msg->{type} eq 'failure';
+        
+        };
+    
+        # Add More Email Headers
+    
+        email {
+            to => '...',
+            subject => '...',
+            message => $msg,
+            headers => {
+                "X-Mailer" => 'This fine Dancer application',
+                "X-Accept-Language" => 'en'
+            }
+        };
+    
+        # Send Text and HTML Email together
+    
+        email {
+            to => '...',
+            subject => '...',
+            type => 'multi',
+            message => {
+                text => $txt,
+                html => $html,
+            }
+        };
 
-To install this module using code from the git repository,
-run the following commands (Dist::Zilla required):
+CONFIG COOKBOOK
+        # Send mail via SMTP with SASL authentication
+    
+        plugins:
+          Email:
+            driver: smtp
+            host: smtp.website.com
+            user: account@gmail.com
+            pass: ****
+    
+        # Send mail to/from Google (gmail)
+    
+        plugins:
+          Email:
+            ssl: 1
+            driver: smtp
+            host: smtp.gmail.com
+            port: 465
+            user: account@gmail.com
+            pass: ****
+        
+        # Send mail to/from Google (gmail) using TLS
+    
+        plugins:
+          Email:
+            tls: 1
+            driver: smtp
+            host: smtp.gmail.com
+            port: 587
+            user: account@gmail.com
+            pass: ****
+        
+        # Debug email server communications
+    
+        plugins:
+          Email:
+            debug: 1
+        
+        # Set default headers to be issued with every message
+    
+        plugins:
+          Email:
+            from: ...
+            subject: ...
+            encoding: base64
+            headers:
+              X-Mailer: MyDancer 1.0
+              X-Accept-Language: en
 
-  dzil build
-  cd Dancer-Plugin-Email-#.##
-  cpan .
+CONFIGURATION
+    Connection details will be taken from your Dancer application config
+    file, and should be specified as, for example:
 
-REPOSITORY
+        plugins:
+          Email:
+            driver: sendmail # must be an Email::Send driver
+            path: /usr/bin/sendmail # for Sendmail
+            host: localhost # for SMTP
+            from: me@website.com
 
-    http://github.com/awnstudio/Dancer-Plugin-Email/
+AUTHORS
+    *   Al Newkirk <awncorp@cpan.org>
 
-COPYRIGHT AND LICENCE
+    *   Naveed Massjouni <ironcamel@cpan.org>
 
-Copyright (C) 2010 Al Newkirk
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2010 by awncorp.
 
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
