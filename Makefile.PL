@@ -9,29 +9,28 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'Simple email handling for Dancer applications using Email::Stuff!',
-  'AUTHOR' => 'Al Newkirk <awncorp@cpan.org>, Naveed Massjouni <ironcamel@cpan.org>',
-  'BUILD_REQUIRES' => {},
-  'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.30'
+  "ABSTRACT" => "Simple email sending for Dancer applications",
+  "AUTHOR" => "Al Newkirk <awncorp\@cpan.org>, Naveed Massjouni <naveedm9\@gmail.com>",
+  "BUILD_REQUIRES" => {},
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
   },
-  'DISTNAME' => 'Dancer-Plugin-Email',
-  'EXE_FILES' => [],
-  'LICENSE' => 'perl',
-  'NAME' => 'Dancer::Plugin::Email',
-  'PREREQ_PM' => {
-    'Authen::SASL' => '0',
-    'Dancer' => '0',
-    'Email::Stuff' => '2.102',
-    'Hash::Merge' => '0.12',
-    'IO::Socket::SSL' => '0',
-    'Net::SMTP::SSL' => '0',
-    'Net::SMTP::TLS' => '0',
-    'Net::SSLeay' => '0'
+  "DISTNAME" => "Dancer-Plugin-Email",
+  "EXE_FILES" => [],
+  "LICENSE" => "perl",
+  "NAME" => "Dancer::Plugin::Email",
+  "PREREQ_PM" => {
+    "Dancer" => 0,
+    "Dancer::Plugin" => 0,
+    "Email::Sender::Simple" => 0,
+    "Email::Simple" => 0,
+    "Module::Load" => 0,
+    "Scalar::Util" => 0,
+    "Try::Tiny" => 0
   },
-  'VERSION' => '0.1300',
-  'test' => {
-    'TESTS' => ''
+  "VERSION" => "0.1300_01",
+  "test" => {
+    "TESTS" => ""
   }
 );
 

@@ -1,139 +1,37 @@
-=================================
-2011-06-27 02:00:04 -0400 v0.1300
-=================================
+==================================================
+Changes from 2011-07-17 00:00:00 +0000 to present.
+==================================================
 
-  commit 9bf17cab2647c9247a9c0619e045469831f0a394
+----------------------------------------------
+version 0.1300_01 at 2012-07-16 06:41:28 +0000
+----------------------------------------------
+
+  Change: 160d760a9fcae1d5220c30c8aba259dc2fd6390b
   Author: Naveed Massjouni <naveedm9@gmail.com>
-  Date:   Mon Jun 27 02:00:04 2011 -0400
-  
-    Changing Prereq -> Prereqs in dist.ini.
+  Date : 2012-07-16 02:36:32 +0000
 
-  commit b6b2157bf88e0da5895253734b5d9bb323b9f493
-  Merge: 69b47cb 0957bb4
+    Major refactor which uses Email::Sender instead of Email::Stuff
+
+    Email::Stuff is built on Email::Send which is deprecated in favor of
+    Email::Sender. This is a major refactor which basically re-implements
+    the entire module on top of Email::Sender. This is a breaking change.
+    I tried my best to keep the interface the same (email { ... }), but
+    the configuration has changed drastically. 
+
+  Change: e1d6fe5171e3d6f2c10ddbc9c6f6960c1572cfb8
   Author: Naveed Massjouni <naveedm9@gmail.com>
-  Date:   Mon Jun 27 01:34:15 2011 -0400
-  
-    Merge branch 'master' of github.com:ironcamel/Dancer-Plugin-Email
+  Date : 2012-07-15 13:39:03 +0000
 
-  commit 69b47cb8f9734764b2f71190fc47507d9ad005e3
-  Author: Naveed Massjouni <naveedm9@gmail.com>
-  Date:   Mon Jun 27 01:33:37 2011 -0400
-  
-    Updating version to 0.1300 for a new CPAN release.
+    Merge pull request #8 from racke/pr/typos
 
-  commit 3484301d65a4111e679d1e94d785365aec4631d1
-  Author: Oleg A. Mamontov <oleg@mamontov.net>
-  Date:   Mon Jun 20 12:56:43 2011 +0400
-  
-    Some examples added to pod.
+    Fix usage of return value in "Handle Email Failures" code recipe. 
 
-  commit 4d46aceb30468840949303f7ceb9f572625eb702
-  Author: Oleg A. Mamontov <oleg@mamontov.net>
-  Date:   Mon Jun 20 12:55:07 2011 +0400
-  
-    Accepts 'encoding' parameter to set appropriate
-    Content-Transfer-Encoding header. 
+  Change: c4b66a07a1b5256bc5d1c82c53d2a706b62121d5
+  Author: Stefan Hornburg (Racke) <racke@linuxia.de>
+  Date : 2012-07-15 11:59:53 +0000
 
-=================================
-2011-06-02 02:13:55 -0400 v0.1203
-=================================
+    Fix usage of return value in "Handle Email Failures" code recipe. 
 
-  commit 9dd73e91b50586a9c3aedc981ea21cda01e5457a
-  Author: Naveed Massjouni <naveedm9@gmail.com>
-  Date:   Thu Jun 2 02:13:55 2011 -0400
-  
-    Updating version to 0.1203
-
-  commit 201376336d18aa55151ea015fbcf0e0f606228d0
-  Author: Naveed Massjouni <naveedm9@gmail.com>
-  Date:   Thu Jun 2 01:56:18 2011 -0400
-  
-    Fixing attachments. Thanks rrb3942. Closes #2. 
-
-=================================
-2010-12-11 06:13:32 -0500 v0.1202
-=================================
-
-  commit 7894a4372ebd56577e19567a9b4702958c4bea5b
-  Author: Naveed Massjouni <naveedm9@gmail.com>
-  Date:   Sat Dec 11 06:13:32 2010 -0500
-  
-    Fix for RT ticket #63706: reply_to not working.
-
-    Thanks to jda@tapodi.net. Fixed warnings about uninitialized value in
-    comparison. Updating version for a new release.
-
-  commit 34c461337cad2ed805f522d1c60c812cbb1fcb38
-  Merge: 6bba359 0fc0d67
-  Author: unknown <Administrator@.(none)>
-  Date:   Sun Oct 17 15:01:53 2010 -0400
-  
-    Merge branch 'master' of
-    git://github.com/alnewkirk/Dancer-Plugin-Email
-
-  commit 6bba359a3133f4f695e5f9a73b29878b2e66415f
-  Author: unknown <Administrator@.(none)>
-  Date:   Sun Oct 17 14:52:49 2010 -0400
-  
-    fixed dist.ini and pod, new version
-
-  commit 0fc0d67b9d627db3dc2e3a73f3886d799df629cd
-  Author: Al Newkirk <root@alnewkirk.com>
-  Date:   Sun Oct 3 19:32:09 2010 -0400
-  
-    fixed settings precedence
-
-  commit 6e79bd0445e1941a5b67f603bf5bd4f530646f8d
-  Merge: 938192e 6e665b8
-  Author: unknown <Administrator@.(none)>
-  Date:   Sat Oct 2 15:01:48 2010 -0400
-  
-    Merge branch 'master' of
-    git://github.com/alnewkirk/Dancer-Plugin-Email
-
-  commit 938192e9250af6a189259605da08b731aed7348d
-  Author: unknown <Administrator@.(none)>
-  Date:   Sat Oct 2 14:58:05 2010 -0400
-  
-    added multi-type email sending support, thanks Igor Bujna
-
-  commit 6e665b8aedcd4bfaa91b65e4196d1975033deff0
-  Author: Al Newkirk & Associates <github@alnewkirk.com>
-  Date:   Mon Sep 13 11:03:41 2010 -0400
-  
-    ran spellcheck
-
-  commit 3f45f0cb7c032b87856cad8a2d86753b084e91b0
-  Author: unknown <Administrator@.(none)>
-  Date:   Sat Sep 11 19:50:17 2010 -0400
-  
-    fixed typo
-
-  commit 7fa0b840d229733346251ce622925e62edda898c
-  Author: unknown <Administrator@.(none)>
-  Date:   Fri Sep 10 20:22:09 2010 -0400
-  
-    fixed ignore
-
-  commit c0332a9cc1945c41f12e999c734558f4fe94f58d
-  Author: unknown <Administrator@.(none)>
-  Date:   Fri Sep 10 20:20:33 2010 -0400
-  
-    fixed smtp authentication support, added reply_to, default
-    content-type is text
-
-  commit d135fa031b9010e21bf568d58a5c1ef8e3893361
-  Author: Al Newkirk & Associates <github@alnewkirk.com>
-  Date:   Fri Sep 10 15:43:26 2010 -0400
-  
-    working on SMTP authentication problem
-
-  commit bade4a71a267c1739360ac2c39465361b3cd0f4f
-  Author: Al Newkirk <root@alnewkirk.com>
-  Date:   Sun May 16 22:01:35 2010 -0400
-  
-    fixed dist.ini 
-
-===================================
-End of changes in the last 365 days
-===================================
+================================================
+Plus 4 releases after 2011-07-17 00:00:00 +0000.
+================================================
