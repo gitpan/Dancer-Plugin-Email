@@ -1,9 +1,19 @@
 ==================================================
-Changes from 2011-07-17 00:00:00 +0000 to present.
+Changes from 2002-07-25 00:00:00 +0000 to present.
 ==================================================
 
 ----------------------------------------------
-version 0.1300_01 at 2012-07-16 06:41:28 +0000
+version 0.1300_02 at 2012-07-22 08:41:08 +0000
+----------------------------------------------
+
+  Change: d5c10a5e09abcd268343bca76566e58d5e06f0f4
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2012-07-22 04:39:13 +0000
+
+    Added support for file attachments 
+
+----------------------------------------------
+version 0.1300_01 at 2012-07-16 06:36:32 +0000
 ----------------------------------------------
 
   Change: 160d760a9fcae1d5220c30c8aba259dc2fd6390b
@@ -13,10 +23,10 @@ version 0.1300_01 at 2012-07-16 06:41:28 +0000
     Major refactor which uses Email::Sender instead of Email::Stuff
 
     Email::Stuff is built on Email::Send which is deprecated in favor of
-    Email::Sender. This is a major refactor which basically re-implements
-    the entire module on top of Email::Sender. This is a breaking change.
-    I tried my best to keep the interface the same (email { ... }), but
-    the configuration has changed drastically. 
+    Email::Sender. This is a major refactor which basically re-implements the
+    entire module on top of Email::Sender. This is a breaking change. I tried
+    my best to keep the interface the same (email { ... }), but the
+    configuration has changed drastically. 
 
   Change: e1d6fe5171e3d6f2c10ddbc9c6f6960c1572cfb8
   Author: Naveed Massjouni <naveedm9@gmail.com>
@@ -32,6 +42,155 @@ version 0.1300_01 at 2012-07-16 06:41:28 +0000
 
     Fix usage of return value in "Handle Email Failures" code recipe. 
 
-================================================
-Plus 4 releases after 2011-07-17 00:00:00 +0000.
-================================================
+-------------------------------------------
+version 0.1300 at 2011-06-27 06:00:04 +0000
+-------------------------------------------
+
+  Change: 9bf17cab2647c9247a9c0619e045469831f0a394
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2011-06-27 02:00:04 +0000
+
+    Changing Prereq -> Prereqs in dist.ini. 
+
+  Change: b6b2157bf88e0da5895253734b5d9bb323b9f493
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2011-06-27 01:34:15 +0000
+
+    Merge branch 'master' of github.com:ironcamel/Dancer-Plugin-Email 
+
+  Change: 69b47cb8f9734764b2f71190fc47507d9ad005e3
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2011-06-27 01:33:37 +0000
+
+    Updating version to 0.1300 for a new CPAN release. 
+
+  Change: 0957bb4921f7127b50c6b63a6c16717f302008c6
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2011-06-26 22:18:06 +0000
+
+    Merge pull request #4 from lonerr/master
+
+    Support for Content-Transfer-Encoding header. Thanks lonerr. 
+
+  Change: 3484301d65a4111e679d1e94d785365aec4631d1
+  Author: Oleg A. Mamontov <oleg@mamontov.net>
+  Date : 2011-06-20 12:56:43 +0000
+
+    Some examples added to pod. 
+
+  Change: 4d46aceb30468840949303f7ceb9f572625eb702
+  Author: Oleg A. Mamontov <oleg@mamontov.net>
+  Date : 2011-06-20 12:55:07 +0000
+
+    Accepts 'encoding' parameter to set appropriate Content-Transfer-Encoding
+    header. 
+
+-------------------------------------------
+version 0.1203 at 2011-06-02 06:13:55 +0000
+-------------------------------------------
+
+  Change: 9dd73e91b50586a9c3aedc981ea21cda01e5457a
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2011-06-02 02:13:55 +0000
+
+    Updating version to 0.1203 
+
+  Change: 201376336d18aa55151ea015fbcf0e0f606228d0
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2011-06-02 01:56:18 +0000
+
+    Fixing attachments. Thanks rrb3942. Closes #2. 
+
+-------------------------------------------
+version 0.1202 at 2010-12-11 11:13:32 +0000
+-------------------------------------------
+
+  Change: 7894a4372ebd56577e19567a9b4702958c4bea5b
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2010-12-11 06:13:32 +0000
+
+    Fix for RT ticket #63706: reply_to not working.
+
+    Thanks to jda@tapodi.net. Fixed warnings about uninitialized value in
+    comparison. Updating version for a new release. 
+
+  Change: 34c461337cad2ed805f522d1c60c812cbb1fcb38
+  Author: unknown <Administrator@.(none)>
+  Date : 2010-10-17 15:01:53 +0000
+
+    Merge branch 'master' of git://github.com/alnewkirk/Dancer-Plugin-Email 
+
+  Change: 6bba359a3133f4f695e5f9a73b29878b2e66415f
+  Author: unknown <Administrator@.(none)>
+  Date : 2010-10-17 14:52:49 +0000
+
+    fixed dist.ini and pod, new version 
+
+  Change: 0fc0d67b9d627db3dc2e3a73f3886d799df629cd
+  Author: Al Newkirk <root@alnewkirk.com>
+  Date : 2010-10-03 19:32:09 +0000
+
+    fixed settings precedence 
+
+  Change: 6e79bd0445e1941a5b67f603bf5bd4f530646f8d
+  Author: unknown <Administrator@.(none)>
+  Date : 2010-10-02 15:01:48 +0000
+
+    Merge branch 'master' of git://github.com/alnewkirk/Dancer-Plugin-Email 
+
+  Change: 938192e9250af6a189259605da08b731aed7348d
+  Author: unknown <Administrator@.(none)>
+  Date : 2010-10-02 14:58:05 +0000
+
+    added multi-type email sending support, thanks Igor Bujna 
+
+  Change: 6e665b8aedcd4bfaa91b65e4196d1975033deff0
+  Author: Al Newkirk & Associates <github@alnewkirk.com>
+  Date : 2010-09-13 11:03:41 +0000
+
+    ran spellcheck 
+
+  Change: 3f45f0cb7c032b87856cad8a2d86753b084e91b0
+  Author: unknown <Administrator@.(none)>
+  Date : 2010-09-11 19:50:17 +0000
+
+    fixed typo 
+
+  Change: 7fa0b840d229733346251ce622925e62edda898c
+  Author: unknown <Administrator@.(none)>
+  Date : 2010-09-10 20:22:09 +0000
+
+    fixed ignore 
+
+  Change: c0332a9cc1945c41f12e999c734558f4fe94f58d
+  Author: unknown <Administrator@.(none)>
+  Date : 2010-09-10 20:20:33 +0000
+
+    fixed smtp authentication support, added reply_to, default content-type is
+    text 
+
+  Change: d135fa031b9010e21bf568d58a5c1ef8e3893361
+  Author: Al Newkirk & Associates <github@alnewkirk.com>
+  Date : 2010-09-10 15:43:26 +0000
+
+    working on SMTP authentication problem 
+
+  Change: bade4a71a267c1739360ac2c39465361b3cd0f4f
+  Author: Al Newkirk <root@alnewkirk.com>
+  Date : 2010-05-16 22:01:35 +0000
+
+    fixed dist.ini 
+
+-----------------------------------------
+version 0.01 at 2010-05-17 01:45:39 +0000
+-----------------------------------------
+
+  Change: fb8217371bb639cd92daf6bb23d8ac7b9dff356d
+  Author: Al Newkirk <root@alnewkirk.com>
+  Date : 2010-05-16 21:45:39 +0000
+
+    initial commit, initial version 
+
+================
+End of releases.
+================

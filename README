@@ -2,7 +2,7 @@ NAME
     Dancer::Plugin::Email - Simple email sending for Dancer applications
 
 VERSION
-    version 0.1300_01
+    version 0.1300_02
 
 SYNOPSIS
         use Dancer;
@@ -14,6 +14,7 @@ SYNOPSIS
                 to      => 'sue@foo.com',
                 subject => 'allo',
                 body    => 'Dear Sue, ...',
+                attach  => '/path/to/attachment',
             };
         };
 
@@ -56,6 +57,7 @@ FUNCTIONS
                     to      => 'sue@foo.com',
                     subject => 'allo',
                     body    => 'Dear Sue, ...',
+                    attach  => ['/path/to/attachment1', '/path/to/attachment2'],
                     # Optional extra headers
                     headers => {
                         "X-Mailer"          => 'This fine Dancer application',
