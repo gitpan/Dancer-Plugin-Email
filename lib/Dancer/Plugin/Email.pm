@@ -1,6 +1,6 @@
 package Dancer::Plugin::Email;
 {
-  $Dancer::Plugin::Email::VERSION = '0.1300_02';
+  $Dancer::Plugin::Email::VERSION = '1.0000';
 }
 
 use Dancer ':syntax';
@@ -13,14 +13,22 @@ use Try::Tiny;
 
 register email => sub {
     my $params = shift || {};
+    my $extra_headers = delete($params->{headers}) || {};
     my $conf = plugin_setting;
     my $conf_headers = $conf->{headers} || {};
-    my %headers = ( %$conf_headers, %$params );
+    my %headers = ( %$conf_headers, %$params, %$extra_headers );
     my $attach = $headers{attach};
-    delete $headers{$_} for qw(body message attach);
+    if (my $type = $headers{type}) {
+        $headers{Type} = $type eq 'html' ? 'text/html' : 'text/plain';
+    }
+    $headers{Type}   ||= 'text/plain';
+    $headers{Format} ||= 'flowed' if $headers{Type} eq 'text/plain';
+    delete $headers{$_} for qw(body message attach type);
 
     my $email = MIME::Entity->build(
-        %headers,
+        Charset  => 'utf-8',
+        Encoding => 'quoted-printable',
+        %headers, # %headers may overwrite type, charset, and encoding
         Data => $params->{body} || $params->{message},
     );
     if ($attach) {
@@ -39,8 +47,19 @@ register email => sub {
     if (my ($transport_name) = keys %$conf_transport) {
         my $transport_params = $conf_transport->{$transport_name} || {};
         my $transport_class = "Email::Sender::Transport::$transport_name";
+        my $transport_redirect = $transport_params->{redirect_address} || '';
         load $transport_class;
         $transport = $transport_class->new($transport_params);
+
+        if ($transport_redirect) {
+            $transport_class = 'Email::Sender::Transport::Redirect';
+            load $transport_class;
+            debug "Redirecting email to $transport_redirect.";
+            $transport = $transport_class->new(
+                transport        => $transport,
+                redirect_address => $transport_redirect
+            );
+        }
     }
     return sendmail $email, { transport => $transport };
 };
@@ -54,6 +73,7 @@ register_plugin;
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -62,7 +82,7 @@ Dancer::Plugin::Email - Simple email sending for Dancer applications
 
 =head1 VERSION
 
-version 0.1300_02
+version 1.0000
 
 =head1 SYNOPSIS
 
@@ -122,10 +142,11 @@ so wrapping calls to C<email> with try/catch is recommended.
         try {
             email {
                 from    => 'bob@foo.com',
-                to      => 'sue@foo.com',
+                to      => 'sue@foo.com, jane@foo.com',
                 subject => 'allo',
                 body    => 'Dear Sue, ...',
                 attach  => ['/path/to/attachment1', '/path/to/attachment2'],
+                type    => 'html', # can be 'html' or 'plain'
                 # Optional extra headers
                 headers => {
                     "X-Mailer"          => 'This fine Dancer application',
@@ -207,11 +228,11 @@ Use the Sendmail transport with an explicit path to the sendmail program:
 
 =item *
 
-Al Newkirk <awncorp@cpan.org>
+Naveed Massjouni <naveedm9@gmail.com>
 
 =item *
 
-Naveed Massjouni <naveedm9@gmail.com>
+Al Newkirk <awncorp@cpan.org>
 
 =back
 
@@ -223,4 +244,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

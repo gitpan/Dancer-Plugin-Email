@@ -4,6 +4,6 @@ MANIFEST
 META.yml
 Makefile.PL
 README
-README.pod
+README.md
 dist.ini
 lib/Dancer/Plugin/Email.pm

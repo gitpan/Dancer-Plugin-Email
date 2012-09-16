@@ -1,20 +1,41 @@
 ==================================================
-Changes from 2002-07-25 00:00:00 +0000 to present.
+Changes from 2002-09-19 00:00:00 +0000 to present.
 ==================================================
 
-----------------------------------------------
-version 0.1300_02 at 2012-07-22 08:41:08 +0000
-----------------------------------------------
+-------------------------------------------
+version 1.0000 at 2012-09-16 08:44:17 +0000
+-------------------------------------------
+
+  Change: cd6aad8db5f7a73f65ffe7c2628b524db5d76a48
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2012-09-16 08:42:11 +0000
+
+    Updating version for release 1.0000 
+
+  Change: 1e66a34271e4ebdb162a158ff6922621df82b725
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2012-09-16 08:17:37 +0000
+
+    Added support for type => 'html' and extra headers. 
+
+  Change: ab3abc1e4bbcc724d40180e523a3f3ea40490f9d
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2012-08-17 05:17:34 +0000
+
+    minor cleanup 
+
+  Change: 1cad6a9b9136cf72d2456bc76d16b1f2f9ed2d18
+  Author: Stefan Hornburg (Racke) <racke@linuxia.de>
+  Date : 2012-07-29 13:51:28 +0000
+
+    Add support for redirecting emails in development environments with
+    Email::Sender::Transport::Redirect. 
 
   Change: d5c10a5e09abcd268343bca76566e58d5e06f0f4
   Author: Naveed Massjouni <naveedm9@gmail.com>
   Date : 2012-07-22 04:39:13 +0000
 
     Added support for file attachments 
-
-----------------------------------------------
-version 0.1300_01 at 2012-07-16 06:36:32 +0000
-----------------------------------------------
 
   Change: 160d760a9fcae1d5220c30c8aba259dc2fd6390b
   Author: Naveed Massjouni <naveedm9@gmail.com>

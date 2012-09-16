@@ -2,7 +2,7 @@ NAME
     Dancer::Plugin::Email - Simple email sending for Dancer applications
 
 VERSION
-    version 0.1300_02
+    version 1.0000
 
 SYNOPSIS
         use Dancer;
@@ -54,10 +54,11 @@ FUNCTIONS
             try {
                 email {
                     from    => 'bob@foo.com',
-                    to      => 'sue@foo.com',
+                    to      => 'sue@foo.com, jane@foo.com',
                     subject => 'allo',
                     body    => 'Dear Sue, ...',
                     attach  => ['/path/to/attachment1', '/path/to/attachment2'],
+                    type    => 'html', # can be 'html' or 'plain'
                     # Optional extra headers
                     headers => {
                         "X-Mailer"          => 'This fine Dancer application',
@@ -128,9 +129,9 @@ SEE ALSO
     Email::Sender
 
 AUTHORS
-    *   Al Newkirk <awncorp@cpan.org>
-
     *   Naveed Massjouni <naveedm9@gmail.com>
+
+    *   Al Newkirk <awncorp@cpan.org>
 
 COPYRIGHT AND LICENSE
     This software is copyright (c) 2010 by awncorp.

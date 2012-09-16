@@ -10,7 +10,7 @@ use ExtUtils::MakeMaker 6.30;
 
 my %WriteMakefileArgs = (
   "ABSTRACT" => "Simple email sending for Dancer applications",
-  "AUTHOR" => "Al Newkirk <awncorp\@cpan.org>, Naveed Massjouni <naveedm9\@gmail.com>",
+  "AUTHOR" => "Naveed Massjouni <naveedm9\@gmail.com>, Al Newkirk <awncorp\@cpan.org>",
   "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30"
@@ -28,7 +28,7 @@ my %WriteMakefileArgs = (
     "Module::Load" => 0,
     "Try::Tiny" => 0
   },
-  "VERSION" => "0.1300_02",
+  "VERSION" => "1.0000",
   "test" => {
     "TESTS" => ""
   }
