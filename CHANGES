@@ -1,9 +1,47 @@
 ==================================================
-Changes from 2002-09-19 00:00:00 +0000 to present.
+Changes from 2003-03-12 00:00:00 +0000 to present.
 ==================================================
 
 -------------------------------------------
-version 1.0000 at 2012-09-16 08:44:17 +0000
+version 1.0100 at 2013-03-09 05:02:04 +0000
+-------------------------------------------
+
+  Change: 28ae884d8df76bad707b748c82a89dafbabfce03
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2013-03-09 00:00:15 +0000
+
+    Getting ready to release version 1.0100 
+
+  Change: 35cb9ade327c73c7d39ce291875b67c869d7461a
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2013-03-08 20:28:40 +0000
+
+    Merge pull request #14 from melmothx/master
+
+    Make the MIME fields for attachments accessible from the plugin 
+
+  Change: 6d397e90e49a18fe06c1bfa66d8444d3d5767b36
+  Author: Marco Pessotto <melmothx@gmail.com>
+  Date : 2013-02-27 17:08:51 +0000
+
+    untabified the file 
+
+  Change: ea8e9b2ae95ce3cb7bc17c31d801b25334f0ebc6
+  Author: Marco Pessotto <melmothx@gmail.com>
+  Date : 2013-02-09 13:15:59 +0000
+
+    Give access to MIME fields to the user for the attachments
+
+    This patch doesn't break retrocompatibility. When passing an hashref to the
+    attachment, pass the hash to MIME::Entity, complaining if Path is missing.
+
+    If a string is passed, the original routine is used.
+
+    The example in the documentation has been changed to show a possible use
+    (embedding CID images in HTML mails). 
+
+-------------------------------------------
+version 1.0000 at 2012-09-16 08:42:11 +0000
 -------------------------------------------
 
   Change: cd6aad8db5f7a73f65ffe7c2628b524db5d76a48

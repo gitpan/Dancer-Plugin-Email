@@ -28,7 +28,7 @@ my %WriteMakefileArgs = (
     "Module::Load" => 0,
     "Try::Tiny" => 0
   },
-  "VERSION" => "1.0000",
+  "VERSION" => "1.0100",
   "test" => {
     "TESTS" => ""
   }

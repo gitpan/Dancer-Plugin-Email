@@ -2,7 +2,7 @@ NAME
     Dancer::Plugin::Email - Simple email sending for Dancer applications
 
 VERSION
-    version 1.0000
+    version 1.0100
 
 SYNOPSIS
         use Dancer;
@@ -56,8 +56,17 @@ FUNCTIONS
                     from    => 'bob@foo.com',
                     to      => 'sue@foo.com, jane@foo.com',
                     subject => 'allo',
-                    body    => 'Dear Sue, ...',
-                    attach  => ['/path/to/attachment1', '/path/to/attachment2'],
+                    body    => 'Dear Sue, ...<img src="cid:blabla">',
+                    attach  => [
+                        '/path/to/attachment1',
+                        '/path/to/attachment2',
+                        {
+                            Path => "/path/to/attachment3",
+                            # Path is required when passing a hashref.
+                            # See Mime::Entity for other optional values.
+                            Id => "blabla",
+                        }
+                    ],
                     type    => 'html', # can be 'html' or 'plain'
                     # Optional extra headers
                     headers => {
@@ -125,8 +134,16 @@ CONFIGURATION
               Sendmail:
                 sendmail: '/usr/sbin/sendmail'
 
+CONTRIBUTORS
+    *   Marco Pessotto <melmothx@gmail.com>
+
+    *   Oleg A. Mamontov <oleg@mamontov.net>
+
+    *   Stefan Hornburg <racke@linuxia.de>
+
 SEE ALSO
     Email::Sender
+    MIME::Entity
 
 AUTHORS
     *   Naveed Massjouni <naveedm9@gmail.com>

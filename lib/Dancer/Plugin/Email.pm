@@ -1,6 +1,6 @@
 package Dancer::Plugin::Email;
 {
-  $Dancer::Plugin::Email::VERSION = '1.0000';
+  $Dancer::Plugin::Email::VERSION = '1.0100';
 }
 
 use Dancer ':syntax';
@@ -34,11 +34,23 @@ register email => sub {
     if ($attach) {
         my @attachments = ref($attach) eq 'ARRAY' ? @$attach : $attach;
         for my $attachment (@attachments) {
-            $email->attach(
-                Path     => $attachment,
-                Type     => File::Type->mime_type($attachment),
-                Encoding => 'base64',
-            );
+            my %mime;
+            if (ref($attachment) eq 'HASH') {
+                %mime = %$attachment;
+                unless ($mime{Path}) {
+                    warning "No Path provided for this attachment!";
+                    next;
+                };
+                $mime{Encoding} ||= 'base64';
+                $mime{Type} ||= File::Type->mime_type($mime{Path}),
+            } else {
+                %mime = (
+                    Path     => $attachment,
+                    Type     => File::Type->mime_type($attachment),
+                    Encoding => 'base64',
+                );
+            }
+            $email->attach(%mime);
         }
     }
 
@@ -47,7 +59,7 @@ register email => sub {
     if (my ($transport_name) = keys %$conf_transport) {
         my $transport_params = $conf_transport->{$transport_name} || {};
         my $transport_class = "Email::Sender::Transport::$transport_name";
-        my $transport_redirect = $transport_params->{redirect_address} || '';
+        my $transport_redirect = $transport_params->{redirect_address};
         load $transport_class;
         $transport = $transport_class->new($transport_params);
 
@@ -82,7 +94,7 @@ Dancer::Plugin::Email - Simple email sending for Dancer applications
 
 =head1 VERSION
 
-version 1.0000
+version 1.0100
 
 =head1 SYNOPSIS
 
@@ -144,8 +156,17 @@ so wrapping calls to C<email> with try/catch is recommended.
                 from    => 'bob@foo.com',
                 to      => 'sue@foo.com, jane@foo.com',
                 subject => 'allo',
-                body    => 'Dear Sue, ...',
-                attach  => ['/path/to/attachment1', '/path/to/attachment2'],
+                body    => 'Dear Sue, ...<img src="cid:blabla">',
+                attach  => [
+                    '/path/to/attachment1',
+                    '/path/to/attachment2',
+                    {
+                        Path => "/path/to/attachment3",
+                        # Path is required when passing a hashref.
+                        # See Mime::Entity for other optional values.
+                        Id => "blabla",
+                    }
+                ],
                 type    => 'html', # can be 'html' or 'plain'
                 # Optional extra headers
                 headers => {
@@ -214,11 +235,31 @@ Use the Sendmail transport with an explicit path to the sendmail program:
           Sendmail:
             sendmail: '/usr/sbin/sendmail'
 
+=head1 CONTRIBUTORS
+
+=over
+
+=item *
+
+Marco Pessotto <melmothx@gmail.com>
+
+=item *
+
+Oleg A. Mamontov <oleg@mamontov.net>
+
+=item *
+
+Stefan Hornburg <racke@linuxia.de>
+
+=back
+
 =head1 SEE ALSO
 
 =over
 
 =item L<Email::Sender>
+
+=item L<MIME::Entity>
 
 =back
 
