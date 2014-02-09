@@ -1,15 +1,12 @@
 package Dancer::Plugin::Email;
-{
-  $Dancer::Plugin::Email::VERSION = '1.0100';
-}
 
-use Dancer ':syntax';
+use Dancer qw(:syntax debug warning);
 use Dancer::Plugin;
 use Email::Sender::Simple 'sendmail';
+use Email::Date::Format 'email_date';
 use File::Type;
 use MIME::Entity;
 use Module::Load 'load';
-use Try::Tiny;
 
 register email => sub {
     my $params = shift || {};
@@ -23,6 +20,7 @@ register email => sub {
     }
     $headers{Type}   ||= 'text/plain';
     $headers{Format} ||= 'flowed' if $headers{Type} eq 'text/plain';
+    $headers{Date}   ||= email_date();
     delete $headers{$_} for qw(body message attach type);
 
     my $email = MIME::Entity->build(
@@ -88,13 +86,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Dancer::Plugin::Email - Simple email sending for Dancer applications
 
 =head1 VERSION
 
-version 1.0100
+version 1.0101
 
 =head1 SYNOPSIS
 
@@ -249,6 +249,10 @@ Oleg A. Mamontov <oleg@mamontov.net>
 
 =item *
 
+Rusty Conover <https://github.com/rustyconover>
+
+=item *
+
 Stefan Hornburg <racke@linuxia.de>
 
 =back
@@ -269,7 +273,7 @@ Stefan Hornburg <racke@linuxia.de>
 
 =item *
 
-Naveed Massjouni <naveedm9@gmail.com>
+Naveed Massjouni <naveed@vt.edu>
 
 =item *
 

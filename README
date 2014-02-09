@@ -2,7 +2,7 @@ NAME
     Dancer::Plugin::Email - Simple email sending for Dancer applications
 
 VERSION
-    version 1.0100
+    version 1.0101
 
 SYNOPSIS
         use Dancer;
@@ -139,6 +139,8 @@ CONTRIBUTORS
 
     *   Oleg A. Mamontov <oleg@mamontov.net>
 
+    *   Rusty Conover <https://github.com/rustyconover>
+
     *   Stefan Hornburg <racke@linuxia.de>
 
 SEE ALSO
@@ -146,7 +148,7 @@ SEE ALSO
     MIME::Entity
 
 AUTHORS
-    *   Naveed Massjouni <naveedm9@gmail.com>
+    *   Naveed Massjouni <naveed@vt.edu>
 
     *   Al Newkirk <awncorp@cpan.org>
 

@@ -1,10 +1,53 @@
 ==================================================
-Changes from 2003-03-12 00:00:00 +0000 to present.
+Changes from 2004-02-12 00:00:00 +0000 to present.
 ==================================================
 
 -------------------------------------------
-version 1.0100 at 2013-03-09 05:02:04 +0000
+version 1.0101 at 2014-02-09 22:58:07 +0000
 -------------------------------------------
+
+  Change: bc4429f7fef86b44999f31b177586922d4be7650
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2014-02-09 17:38:22 +0000
+
+    releasing v1.0101 
+
+  Change: a8a84a5266cec6062cc99b1a57b4d7b0ea1996c3
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2014-02-09 17:05:16 +0000
+
+    Merge pull request #17 from rustyconover/master
+
+    Prevent subroutine prototype mismatch between Dancer's load and
+    Module::Load 
+
+  Change: e971922f1d042f4286f05f7a1f829e8a13fe79ef
+  Author: Rusty Conover <rusty@luckydinosaur.com>
+  Date : 2014-02-09 09:42:36 +0000
+
+    Change to only import debug and warning from Dancer rather than disallowing
+    load. 
+
+  Change: 6be5db6d2a8530e7f1aa5145726e8cad8eae80aa
+  Author: Rusty Conover <rusty@luckydinosaur.com>
+  Date : 2014-02-09 00:09:02 +0000
+
+    Prevent Dancer's load from being exported so that it doesn't conflict with
+    Module::Load's load export. 
+
+  Change: 8cbeb4c5a873afe472b8b636146f13ec2a5af957
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2013-10-18 07:40:22 +0000
+
+    Merge pull request #16 from episodeiv/master
+
+    Provide Date header with a sensible default value 
+
+  Change: 24e40fddfb91adc7b61fa3a6eefa96df9d6a0bf5
+  Author: Dennis LichtenthaÌler <dennis.lichtenthaeler@episode-iv.de>
+  Date : 2013-10-18 13:54:50 +0000
+
+    Provide Date header with a sensible default value 
 
   Change: 28ae884d8df76bad707b748c82a89dafbabfce03
   Author: Naveed Massjouni <naveedm9@gmail.com>
