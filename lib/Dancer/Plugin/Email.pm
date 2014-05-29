@@ -1,5 +1,7 @@
 package Dancer::Plugin::Email;
 
+our $VERSION = '1.0201'; # VERSION
+
 use Dancer qw(:syntax debug warning);
 use Dancer::Plugin;
 use Email::Sender::Simple 'sendmail';
@@ -106,7 +108,7 @@ Dancer::Plugin::Email - Simple email sending for Dancer applications
 
 =head1 VERSION
 
-version 1.0200
+version 1.0201
 
 =head1 SYNOPSIS
 

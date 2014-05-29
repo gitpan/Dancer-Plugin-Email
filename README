@@ -2,7 +2,7 @@ NAME
     Dancer::Plugin::Email - Simple email sending for Dancer applications
 
 VERSION
-    version 1.0200
+    version 1.0201
 
 SYNOPSIS
         use Dancer;
