@@ -10,11 +10,13 @@ use Module::Load 'load';
 
 register email => sub {
     my $params = shift || {};
+    my $multipart = delete $params->{multipart};
     my $extra_headers = delete($params->{headers}) || {};
     my $conf = plugin_setting;
     my $conf_headers = $conf->{headers} || {};
     my %headers = ( %$conf_headers, %$params, %$extra_headers );
     my $attach = $headers{attach};
+    my $sender = delete $headers{sender};
     if (my $type = $headers{type}) {
         $headers{Type} = $type eq 'html' ? 'text/html' : 'text/plain';
     }
@@ -30,6 +32,14 @@ register email => sub {
         Data => $params->{body} || $params->{message},
     );
     if ($attach) {
+        if ($multipart) {
+            # by default, when you add an attachment,
+            # C<make_multipart> will be called by MIME::Entity, but
+            # defaults to 'mixed'. Thunderbird doesn't like this for
+            # embedded images, so we have a chance to set it to
+            # 'related' or anything that the user wants
+            $email->make_multipart($multipart);
+        }
         my @attachments = ref($attach) eq 'ARRAY' ? @$attach : $attach;
         for my $attachment (@attachments) {
             my %mime;
@@ -71,7 +81,9 @@ register email => sub {
             );
         }
     }
-    return sendmail $email, { transport => $transport };
+    my %sendmail_arg = ( transport => $transport );
+    $sendmail_arg{from} = $sender if defined $sender;
+    return sendmail $email, \%sendmail_arg;
 };
 
 
@@ -94,7 +106,7 @@ Dancer::Plugin::Email - Simple email sending for Dancer applications
 
 =head1 VERSION
 
-version 1.0101
+version 1.0200
 
 =head1 SYNOPSIS
 
@@ -153,10 +165,12 @@ so wrapping calls to C<email> with try/catch is recommended.
     post '/contact' => sub {
         try {
             email {
+                sender  => 'bounces-here@foo.com', # optional
                 from    => 'bob@foo.com',
                 to      => 'sue@foo.com, jane@foo.com',
                 subject => 'allo',
                 body    => 'Dear Sue, ...<img src="cid:blabla">',
+                multipart => 'related', # optional, see below
                 attach  => [
                     '/path/to/attachment1',
                     '/path/to/attachment2',
@@ -199,6 +213,7 @@ You may also provide default headers in the configuration:
       Email:
         # Set default headers (OPTIONAL)
         headers:
+          sender: 'bounces-here@foo.com'
           from: 'bob@foo.com'
           subject: 'default subject'
           X-Mailer: 'MyDancer 1.0'
@@ -234,6 +249,30 @@ Use the Sendmail transport with an explicit path to the sendmail program:
         transport:
           Sendmail:
             sendmail: '/usr/sbin/sendmail'
+
+=head2 Multipart messages
+
+You can embed images in HTML messages this way: first, set the C<type>
+to C<html>. Then pass the attachments as hashrefs, setting C<Path> and
+C<Id>. In the HTML body, refer to the attachment using the C<Id>,
+prepending C<cid:> in the C<src> attribute. This works for popular
+webmail clients like Gmail and OE, but is not enough for Thunderbird,
+which wants a C<multipart/related> mail, not the default
+C<multipart/mixed>. You can fix this adding the C<multipart> parameter
+set to C<related>, which set the desired subtype when you pass
+attachments.
+
+Example:
+
+  email {
+         from    => $from,
+         to      => $to,
+         subject => $subject,
+         body    => q{<p>Image embedded: <img src="cid:mycid"/></p>},
+         type    => 'html',
+         attach  => [ { Id => 'mycid', Path => '/path/to/file' }],
+         multipart => 'related'
+        };
 
 =head1 CONTRIBUTORS
 

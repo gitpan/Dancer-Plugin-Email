@@ -2,7 +2,7 @@ NAME
     Dancer::Plugin::Email - Simple email sending for Dancer applications
 
 VERSION
-    version 1.0101
+    version 1.0200
 
 SYNOPSIS
         use Dancer;
@@ -53,10 +53,12 @@ FUNCTIONS
         post '/contact' => sub {
             try {
                 email {
+                    sender  => 'bounces-here@foo.com', # optional
                     from    => 'bob@foo.com',
                     to      => 'sue@foo.com, jane@foo.com',
                     subject => 'allo',
                     body    => 'Dear Sue, ...<img src="cid:blabla">',
+                    multipart => 'related', # optional, see below
                     attach  => [
                         '/path/to/attachment1',
                         '/path/to/attachment2',
@@ -96,6 +98,7 @@ CONFIGURATION
           Email:
             # Set default headers (OPTIONAL)
             headers:
+              sender: 'bounces-here@foo.com'
               from: 'bob@foo.com'
               subject: 'default subject'
               X-Mailer: 'MyDancer 1.0'
@@ -133,6 +136,28 @@ CONFIGURATION
             transport:
               Sendmail:
                 sendmail: '/usr/sbin/sendmail'
+
+  Multipart messages
+    You can embed images in HTML messages this way: first, set the "type" to
+    "html". Then pass the attachments as hashrefs, setting "Path" and "Id".
+    In the HTML body, refer to the attachment using the "Id", prepending
+    "cid:" in the "src" attribute. This works for popular webmail clients
+    like Gmail and OE, but is not enough for Thunderbird, which wants a
+    "multipart/related" mail, not the default "multipart/mixed". You can fix
+    this adding the "multipart" parameter set to "related", which set the
+    desired subtype when you pass attachments.
+
+    Example:
+
+      email {
+             from    => $from,
+             to      => $to,
+             subject => $subject,
+             body    => q{<p>Image embedded: <img src="cid:mycid"/></p>},
+             type    => 'html',
+             attach  => [ { Id => 'mycid', Path => '/path/to/file' }],
+             multipart => 'related'
+            };
 
 CONTRIBUTORS
     *   Marco Pessotto <melmothx@gmail.com>

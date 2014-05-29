@@ -1,9 +1,55 @@
 ==================================================
-Changes from 2004-02-12 00:00:00 +0000 to present.
+Changes from 2004-05-31 00:00:00 +0000 to present.
 ==================================================
 
 -------------------------------------------
-version 1.0101 at 2014-02-09 22:58:07 +0000
+version 1.0200 at 2014-05-29 04:24:56 +0000
+-------------------------------------------
+
+  Change: 7e7916e11bddb89ac799e77bc488566dbbff7308
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2014-05-29 00:24:56 +0000
+
+    releasing v1.0200 
+
+  Change: d8e23eef1ebceee3a73c1f59743c53f3ebac907b
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2014-05-17 16:32:50 +0000
+
+    Merge pull request #19 from fany/master
+
+    added possibility to set sender address 
+
+  Change: 593067fd7a7e7b9d66b8214bd76239ac92631c21
+  Author: Martin H. Sluka <martin@sluka.de>
+  Date : 2014-05-13 16:04:41 +0000
+
+    added possibility to set sender address
+
+    (different from From header) 
+
+  Change: 2f799f8bf4c82257c1336e8c375b33c75443a458
+  Author: Naveed Massjouni <naveedm9@gmail.com>
+  Date : 2014-04-24 01:08:07 +0000
+
+    Merge pull request #18 from melmothx/feature/multipart
+
+    Added "multipart" key 
+
+  Change: 3e2e75555b67b6512f6db69e34736130314cf38d
+  Author: Marco Pessotto <melmothx@gmail.com>
+  Date : 2014-04-15 10:15:08 +0000
+
+    Cleaned up and documented 
+
+  Change: 3ad998a6a8cf95149fdef27ae6817a2569241175
+  Author: Marco Pessotto <melmothx@gmail.com>
+  Date : 2014-04-15 09:41:35 +0000
+
+    Permit the usage of make_multipart('related'); 
+
+-------------------------------------------
+version 1.0101 at 2014-02-09 22:38:22 +0000
 -------------------------------------------
 
   Change: bc4429f7fef86b44999f31b177586922d4be7650
